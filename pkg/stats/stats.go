@@ -6,12 +6,14 @@ import (
 
 func Avg(payments []types.Payment) types.Money {
 	ans := types.Money(0)
+	cnt := 0
 	for _, payment := range payments {
 		if payment.Status != types.StatusFail {
 			ans += payment.Amount
+			cnt++
 		}
 	}
-	return ans / types.Money(len(payments))
+	return ans / types.Money(cnt)
 }
 func TotalInCategory(payments []types.Payment, category string) types.Money {
 	ans := types.Money(0)
